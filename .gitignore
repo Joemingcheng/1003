@@ -1,0 +1,6 @@
+# 本機預覽與其他專案的檔案，不需要上傳到 GitHub Pages
+.claude/
+vibe-site/
+tsmc-2330-quote-20261002.html
+__pycache__/
+*.pyc

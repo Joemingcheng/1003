@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-label="輝達示意圖：AI 加速運算晶片">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B2A23"/><stop offset="1" stop-color="#14705A"/>
+    </linearGradient>
+    <linearGradient id="die" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1F3B35"/><stop offset="1" stop-color="#10201C"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#bg)"/>
+  <!-- 散熱鰭片 -->
+  <g stroke="#7FD9BD" stroke-opacity=".22" stroke-width="3" stroke-linecap="round">
+    <path d="M40 70h120M40 90h90M40 110h130M480 250h120M510 270h90M470 290h130"/>
+  </g>
+  <g transform="translate(320 168)">
+    <!-- 晶片基板 -->
+    <rect x="-120" y="-100" width="240" height="200" rx="16" fill="#0E1F1B" stroke="#7FD9BD" stroke-opacity=".6" stroke-width="2"/>
+    <g stroke="#A7EBD3" stroke-width="4" stroke-linecap="round" opacity=".8">
+      <path d="M-84-100v-14M-42-100v-14M0-100v-14M42-100v-14M84-100v-14"/>
+      <path d="M-84 100v14M-42 100v14M0 100v14M42 100v14M84 100v14"/>
+      <path d="M-120-60h-14M-120-20h-14M-120 20h-14M-120 60h-14"/>
+      <path d="M120-60h14M120-20h14M120 20h14M120 60h14"/>
+    </g>
+    <!-- 中央運算晶粒與周邊 HBM -->
+    <rect x="-52" y="-52" width="104" height="104" rx="8" fill="url(#die)" stroke="#9BE6CB" stroke-width="2"/>
+    <g fill="#35B994" fill-opacity=".85">
+      <rect x="-40" y="-40" width="24" height="24" rx="3"/><rect x="-12" y="-40" width="24" height="24" rx="3"/><rect x="16" y="-40" width="24" height="24" rx="3"/>
+      <rect x="-40" y="-12" width="24" height="24" rx="3"/><rect x="-12" y="-12" width="24" height="24" rx="3"/><rect x="16" y="-12" width="24" height="24" rx="3"/>
+      <rect x="-40" y="16" width="24" height="24" rx="3"/><rect x="-12" y="16" width="24" height="24" rx="3"/><rect x="16" y="16" width="24" height="24" rx="3"/>
+    </g>
+    <g fill="#5CD3AE" fill-opacity=".55">
+      <rect x="-104" y="-44" width="36" height="88" rx="4"/><rect x="68" y="-44" width="36" height="88" rx="4"/>
+    </g>
+    <text x="0" y="82" text-anchor="middle" font-family="'Barlow Condensed','Arial Narrow',Arial,sans-serif" font-size="30" font-weight="700" letter-spacing="5" fill="#FFFFFF">NVDA</text>
+  </g>
+  <text x="24" y="338" font-family="'Noto Sans TC','Microsoft JhengHei',Arial,sans-serif" font-size="16" fill="#D8F5EA" font-weight="700">NVIDIA</text>
+  <text x="616" y="338" text-anchor="end" font-family="Arial,sans-serif" font-size="12" fill="#9BE6CB">NASDAQ</text>
+</svg>

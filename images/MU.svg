@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-label="美光科技示意圖：記憶體晶片">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0E2A52"/><stop offset="1" stop-color="#1F5FA8"/>
+    </linearGradient>
+    <linearGradient id="chip" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2D3E57"/><stop offset="1" stop-color="#16233A"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#bg)"/>
+  <!-- 背景電路線 -->
+  <g stroke="#7FB3F5" stroke-opacity=".18" stroke-width="2" fill="none">
+    <path d="M0 70h140l30 30h120"/><path d="M0 300h110l40-40h90"/><path d="M640 80h-120l-30 30h-70"/><path d="M640 290h-100l-40-40h-80"/>
+  </g>
+  <!-- 晶片本體 -->
+  <g transform="translate(320 170)">
+    <g stroke="#B9D4F7" stroke-width="5" stroke-linecap="round" opacity=".85">
+      <path d="M-70-96v22M-35-96v22M0-96v22M35-96v22M70-96v22"/>
+      <path d="M-70 74v22M-35 74v22M0 74v22M35 74v22M70 74v22"/>
+      <path d="M-116-52h22M-116-18h22M-116 16h22M-116 50h22"/>
+      <path d="M94-52h22M94-18h22M94 16h22M94 50h22"/>
+    </g>
+    <rect x="-94" y="-74" width="188" height="148" rx="14" fill="url(#chip)" stroke="#9CC4F5" stroke-width="2"/>
+    <!-- 記憶體格 -->
+    <g fill="#5FA3F0" fill-opacity=".9">
+      <rect x="-72" y="-54" width="30" height="18" rx="3"/><rect x="-36" y="-54" width="30" height="18" rx="3"/><rect x="0" y="-54" width="30" height="18" rx="3"/><rect x="36" y="-54" width="30" height="18" rx="3"/>
+    </g>
+    <g fill="#5FA3F0" fill-opacity=".55">
+      <rect x="-72" y="-28" width="30" height="18" rx="3"/><rect x="-36" y="-28" width="30" height="18" rx="3"/><rect x="0" y="-28" width="30" height="18" rx="3"/><rect x="36" y="-28" width="30" height="18" rx="3"/>
+    </g>
+    <text x="0" y="40" text-anchor="middle" font-family="'Barlow Condensed','Arial Narrow',Arial,sans-serif" font-size="44" font-weight="700" letter-spacing="6" fill="#FFFFFF">MU</text>
+    <text x="0" y="62" text-anchor="middle" font-family="Arial,sans-serif" font-size="11" letter-spacing="2" fill="#B9D4F7">DRAM · NAND · HBM</text>
+  </g>
+  <text x="24" y="338" font-family="'Noto Sans TC','Microsoft JhengHei',Arial,sans-serif" font-size="16" fill="#DCEAFB" font-weight="700">Micron Technology</text>
+  <text x="616" y="338" text-anchor="end" font-family="Arial,sans-serif" font-size="12" fill="#9CC4F5">NASDAQ</text>
+</svg>

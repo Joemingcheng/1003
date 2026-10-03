@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>美股財報解讀｜輸入代碼，看懂這一季</title>
+<meta name="description" content="輸入美股代碼，用「一條主線、五個問題」讀懂公司這一季的財報：賺多少、公司怎麼說、市場怎麼反應、最該盯什麼、股價算貴嗎。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%231F4E8C%27/%3E%3Crect x=%274%27 y=%2718%27 width=%275%27 height=%2710%27 rx=%271%27 fill=%27%23fff%27 opacity=%27.5%27/%3E%3Crect x=%2712%27 y=%2712%27 width=%275%27 height=%2716%27 rx=%271%27 fill=%27%23fff%27 opacity=%27.75%27/%3E%3Crect x=%2720%27 y=%276%27 width=%275%27 height=%2722%27 rx=%271%27 fill=%27%23fff%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
+<link rel="stylesheet" href="css/style.css">
+<script>
+/* 在畫面繪製前套用已儲存的主題，避免閃白；讀取失敗就沿用系統設定 */
+try{var t=localStorage.getItem('sr-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">跳到主要內容</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="#/" aria-label="回到首頁">
+      <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="3" y="18" width="5" height="10" rx="1" fill="currentColor" opacity=".45"/><rect x="11" y="12" width="5" height="16" rx="1" fill="currentColor" opacity=".7"/><rect x="19" y="6" width="5" height="22" rx="1" fill="currentColor"/><path d="M4 12 13 7l7 3 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="t">美股財報解讀</span><small>一條主線．五個問題</small>
+    </a>
+    <form class="search" data-search role="search" autocomplete="off">
+      <label class="sr-only" for="q-head">輸入美股代碼或公司名稱</label>
+      <input id="q-head" name="q" type="text" inputmode="latin" list="tickers" maxlength="24" placeholder="輸入代碼，例如 MU" spellcheck="false" autocapitalize="characters">
+      <button class="btn primary" type="submit">分析</button>
+    </form>
+    <button class="btn icon-btn" id="theme" type="button" aria-label="切換淺色／深色主題" title="切換主題">◐</button>
+  </div>
+</header>
+
+<datalist id="tickers"></datalist>
+
+<main id="main" tabindex="-1">
+  <div id="view" aria-live="polite"><p class="loading wrap">載入中…</p></div>
+  <noscript><p class="wrap" style="padding-block:40px">這個網站需要啟用 JavaScript 才能顯示圖表與試算。</p></noscript>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>本站為教學用途，用「同一套方法」拆解公司財報，不構成任何投資建議，也不是買賣建議或價格預測。所有數字皆標示出處；標示「自算」者為本站依公開資料計算，可能與其他來源略有差異。</p>
+    <p>股價與報告時點固定在各報告首頁所載日期，不會即時更新。投資有風險，決策前請自行查證並諮詢合格的專業人士。</p>
+  </div>
+</footer>
+
+<script src="data/index.js"></script>
+<script src="js/util.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/calc.js"></script>
+<script src="js/render.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
