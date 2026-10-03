@@ -513,3 +513,13 @@ td.gcell.me{outline:2px solid var(--blue);outline-offset:-2px;font-weight:700}
   body:not([data-view="home"]) .brand .t{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   .bar .wrap{gap:8px}
 }
+
+/* 觸控／窄螢幕：報告頁內文裡的小連結（來源註記 [n]、「看…」「去…」連結、麵包屑）點擊範圍放大到約 32–44px。
+   不改字級與行距：用透明的 ::after 向外延伸可點範圍；摺疊的「看數據表」summary 則加高 */
+@media (pointer:coarse),(max-width:760px){
+  sup.ref a,.sum a.go,.asks .hint a,.watch .look a,.crumb a,#view p > a{position:relative}
+  sup.ref a::after,.sum a.go::after,.asks .hint a::after,.watch .look a::after,.crumb a::after,#view p > a::after{content:'';position:absolute;inset:-9px -4px}
+  sup.ref a::after{inset:-10px -6px}
+  details.data summary{padding:9px 0;min-height:40px}
+}
+
