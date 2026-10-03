@@ -8,28 +8,38 @@
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%231F4E8C%27/%3E%3Crect x=%274%27 y=%2718%27 width=%275%27 height=%2710%27 rx=%271%27 fill=%27%23fff%27 opacity=%27.5%27/%3E%3Crect x=%2712%27 y=%2712%27 width=%275%27 height=%2716%27 rx=%271%27 fill=%27%23fff%27 opacity=%27.75%27/%3E%3Crect x=%2720%27 y=%276%27 width=%275%27 height=%2722%27 rx=%271%27 fill=%27%23fff%27/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Serif+TC:wght@600;700&display=swap">
+<!-- Sora 必須是「可變字重」版本：設計用 font-variation-settings:'wght' 424、506、531… 這類小數字重；中文字由 Noto Sans TC 補上 -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@100..800&family=Noto+Sans+TC:wght@300;400;500;700&display=swap">
 <link rel="stylesheet" href="css/style.css">
-<script>
-/* 在畫面繪製前套用已儲存的主題，避免閃白；讀取失敗就沿用系統設定 */
-try{var t=localStorage.getItem('sr-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}
-</script>
 </head>
-<body>
+<body data-view="home">
 <a class="skip" href="#main">跳到主要內容</a>
 
-<header class="site-head">
+<video class="art" autoplay muted loop playsinline preload="auto" aria-hidden="true"
+  poster="https://d2ol7oe51mr4n9.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/130837c4-0244-4f37-9c61-8d801d93fd29.jpg"
+  src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260912_104303_0c6d60b2-9353-408e-9449-585108a22fb5.mp4"></video>
+<div class="veil"></div>
+
+<header class="bar">
   <div class="wrap">
     <a class="brand" href="#/" aria-label="回到首頁">
       <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><rect x="3" y="18" width="5" height="10" rx="1" fill="currentColor" opacity=".45"/><rect x="11" y="12" width="5" height="16" rx="1" fill="currentColor" opacity=".7"/><rect x="19" y="6" width="5" height="22" rx="1" fill="currentColor"/><path d="M4 12 13 7l7 3 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      <span class="t">美股財報解讀</span><small>一條主線．五個問題</small>
+      <span class="t" id="word">美股財報解讀</span><small>一條主線．五個問題</small>
     </a>
     <form class="search" data-search role="search" autocomplete="off">
       <label class="sr-only" for="q-head">輸入美股代碼或公司名稱</label>
       <input id="q-head" name="q" type="text" inputmode="latin" list="tickers" maxlength="24" placeholder="輸入代碼，例如 MU" spellcheck="false" autocapitalize="characters">
       <button class="btn primary" type="submit">分析</button>
     </form>
-    <button class="btn icon-btn" id="theme" type="button" aria-label="切換淺色／深色主題" title="切換主題">◐</button>
+    <input class="navtoggle" type="checkbox" id="nav-open">
+    <label class="scrim" for="nav-open" aria-hidden="true"></label>
+    <label class="burger" for="nav-open" aria-label="選單">
+      <svg viewBox="0 0 22 14" aria-hidden="true"><path class="b1" d="M1 1 H21"/><path class="b2" d="M1 7 H21"/><path class="b3" d="M1 13 H21"/></svg>
+    </label>
+    <div class="navpanel">
+      <nav class="menu" id="menu" aria-label="已收錄的公司"></nav>
+      <a class="pill" href="#/"><span id="contact">首頁</span></a>
+    </div>
   </div>
 </header>
 
@@ -42,8 +52,8 @@ try{var t=localStorage.getItem('sr-theme');if(t==='light'||t==='dark')document.d
 
 <footer class="foot">
   <div class="wrap">
-    <p>本站為教學用途，用「同一套方法」拆解公司財報，不構成任何投資建議，也不是買賣建議或價格預測。所有數字皆標示出處；標示「自算」者為本站依公開資料計算，可能與其他來源略有差異。</p>
-    <p>股價與報告時點固定在各報告首頁所載日期，不會即時更新。投資有風險，決策前請自行查證並諮詢合格的專業人士。</p>
+    <p id="foot1">本站為教學用途，用「同一套方法」拆解公司財報，不構成任何投資建議，也不是買賣建議或價格預測。所有數字皆標示出處；標示「自算」者為本站依公開資料計算，可能與其他來源略有差異。</p>
+    <p id="foot2">股價與報告時點固定在各報告首頁所載日期，不會即時更新。投資有風險，決策前請自行查證並諮詢合格的專業人士。</p>
   </div>
 </footer>
 

@@ -182,7 +182,8 @@
   /* ---------- 首頁 ---------- */
   SR.renderHome = function () {
     const idx = SR.index;
-    const chips = idx.map((c) => `<a class="chip" href="#/${esc(c.ticker)}"><b>${esc(c.ticker)}</b>${esc(c.nameZh || c.name)}</a>`).join('');
+    const chev = '<svg class="chev" viewBox="0 0 11 20" aria-hidden="true"><path d="M1.15 1.15 L9.6 10 L1.15 18.85"/></svg>';
+    const feats = idx.map((c) => `<li>${chev}<a href="#/${esc(c.ticker)}"><b>${esc(c.ticker)}</b>${esc(c.nameZh || c.name)}</a></li>`).join('');
     const cards = idx.map((c) => `<a class="co-card" href="#/${esc(c.ticker)}"><div class="img"><img src="${esc(c.image)}" alt="${esc(c.name)} 示意圖" width="640" height="360" loading="lazy" data-fallback="${esc(c.ticker)}"></div><div class="body"><span class="tk">${esc(c.ticker)}</span><span class="nm">${esc(c.name)}${c.nameZh ? `（${esc(c.nameZh)}）` : ''}</span><span class="hd">${esc(c.headline)}</span><span class="meta">${esc(c.period)}｜${esc(c.sector)}</span></div></a>`).join('');
     const steps = [
       ['賺多少、錢從哪裡來', '拆營收、拆利潤，找出錢真正的來源，寫下這一季的「主線句」。'],
@@ -191,24 +192,29 @@
       ['最該盯什麼', '找出利潤率最敏感的變數，列出「壓力 vs 保護」，把承諾變成可檢驗的數字。'],
       ['股價算貴嗎', '多種方法並列，把「驅動能撐多久」轉成估值裡最關鍵的假設。'],
     ].map((s, i) => `<div class="step"><span class="n">${i + 1}</span><b>${s[0]}</b><p>${s[1]}</p></div>`).join('');
-    return `<div class="wrap">
-      <section class="hero">
-        <h1>輸入美股代碼，<br>用一條主線讀懂這一季財報</h1>
-        <p class="lead">每份報告只講一個論點：<strong>「表面上看到的成長是 A，真正的驅動是 B，而 B 正在改變。」</strong>五個章節一路接力，從「賺多少」到「貴不貴」。所有數字取自正式申報文件，媒體只拿來和文件比對。</p>
-        <form class="search" data-search role="search" autocomplete="off">
+    return `<section class="hero">
+        <div class="hero-top">
+        <h1 class="title"><span id="h1a">輸入美股代碼，</span><span id="h1b">用一條主線讀懂這一季財報</span></h1>
+        <p class="sub" id="sub1">每份報告只講一個論點：<strong>「表面上看到的成長是 A，真正的驅動是 B，而 B 正在改變。」</strong>五個章節一路接力，從「賺多少」到「貴不貴」。所有數字取自正式申報文件，媒體只拿來和文件比對。</p>
+        </div>
+        <form class="search cta" data-search role="search" autocomplete="off">
           <label class="sr-only" for="q-hero">輸入美股代碼或公司名稱</label>
           <input id="q-hero" name="q" type="text" inputmode="latin" list="tickers" maxlength="24" placeholder="輸入代碼或公司名，例如 MU" spellcheck="false" autocapitalize="characters">
-          <button class="btn primary" type="submit">分析</button>
+          <button class="btn primary" type="submit"><span id="cta">分析</span><svg class="arrow" viewBox="0 0 16 11" aria-hidden="true"><path d="M0 5.5 H14.6 M10.3 1.2 L14.9 5.5 L10.3 9.8"/></svg></button>
         </form>
-        <div class="chips" aria-label="已收錄的公司"><span class="help">已收錄：</span>${chips}</div>
+        <div class="hero-bottom">
+        <ul class="feats" aria-label="已收錄的公司"><li class="lab">已收錄：</li>${feats}</ul>
         <p class="help">只能分析已收錄的公司；輸入其他代碼時，會告訴你怎麼自己拆解，以及如何把它加進本站。</p>
+        <span class="rule" aria-hidden="true"></span>
+        </div>
       </section>
-      <section><h2 class="sec-title">已收錄的報告</h2><div class="cards-grid">${cards}</div></section>
-      <section style="margin-top:36px"><h2 class="sec-title">五個問題，一條主線</h2><div class="method">${steps}</div></section>
-      <section style="margin-top:36px"><h2 class="sec-title">顏色代表什麼</h2>
-        <div class="legend-row"><span><i class="dot blue"></i>藍：主結論、公司本身</span><span><i class="dot green"></i>綠：正面或保護因素</span><span><i class="dot red"></i>紅：風險或壓力</span><span><i class="dot gold"></i>金：媒體補到但文件沒寫、或需要留意</span><span><i class="dot grey"></i>灰：限制、中性說明</span><span><i class="dot purple"></i>紫：思考題、反方觀點</span></div>
-        <p class="help" style="margin-top:8px">圖表一律另附文字標籤與數據表，不單靠顏色傳達意思。標示「自算」的數字，是本站依公開資料計算的，並寫明算法。</p></section>
-    </div>`;
+      <div class="below"><div class="wrap">
+        <section><h2 class="sec-title">已收錄的報告</h2><div class="cards-grid">${cards}</div></section>
+        <section><h2 class="sec-title">五個問題，一條主線</h2><div class="method">${steps}</div></section>
+        <section><h2 class="sec-title">顏色代表什麼</h2>
+          <div class="legend-row"><span><i class="dot blue"></i>藍：主結論、公司本身</span><span><i class="dot green"></i>綠：正面或保護因素</span><span><i class="dot red"></i>紅：風險或壓力</span><span><i class="dot gold"></i>金：媒體補到但文件沒寫、或需要留意</span><span><i class="dot grey"></i>灰：限制、中性說明</span><span><i class="dot purple"></i>紫：思考題、反方觀點</span></div>
+          <p class="help" style="margin-top:8px">圖表一律另附文字標籤與數據表，不單靠顏色傳達意思。標示「自算」的數字，是本站依公開資料計算的，並寫明算法。</p></section>
+      </div></div>`;
   };
 
   /* ---------- 找不到 ---------- */

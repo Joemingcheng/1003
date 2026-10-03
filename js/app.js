@@ -7,6 +7,7 @@
   const SITE = '美股財報解讀';
 
   /* ---------- 搜尋 ---------- */
+  document.getElementById('menu').innerHTML = SR.index.map((c) => `<a href="#/${SR.esc(c.ticker)}"><b>${SR.esc(c.ticker)}</b>${SR.esc(c.nameZh || c.name)}</a>`).join('');
   document.getElementById('tickers').innerHTML = SR.index.map((c) => `<option value="${SR.esc(c.ticker)}">${SR.esc(c.name)}${c.nameZh ? ' ' + SR.esc(c.nameZh) : ''}</option>`).join('');
 
   function resolve(raw) {
@@ -46,10 +47,12 @@
     const [t, anchor] = decodeURIComponent(h.slice(2)).split('/');
     return { raw: t || '', anchor: anchor || '' };
   }
-  function setView(html, title) {
+  function setView(html, title, kind) {
     if (view._off) { view._off(); view._off = null; }
     view.innerHTML = html;
     document.title = title;
+    document.body.dataset.view = kind || 'report';
+    document.getElementById('nav-open').checked = false;   // 換頁時收起漢堡選單
   }
   function focusMain() { main.focus({ preventScroll: true }); }
 
@@ -57,18 +60,18 @@
     const r = parse(), my = ++token;
     if (r === null) { if (!showing) home(); return; }          // #ch3 這類頁內錨點：不換頁
     if (!r.raw || r.raw.startsWith('?')) {
-      if (r.raw.startsWith('?bad=')) { setView(SR.renderNotFound('', r.raw.slice(5)), `代碼格式不正確｜${SITE}`); showing = 'nf'; window.scrollTo(0, 0); focusMain(); return; }
+      if (r.raw.startsWith('?bad=')) { setView(SR.renderNotFound('', r.raw.slice(5)), `代碼格式不正確｜${SITE}`, 'nf'); showing = 'nf'; window.scrollTo(0, 0); focusMain(); return; }
       home(); return;
     }
     const t = SR.cleanTicker(r.raw);
-    if (!t) { setView(SR.renderNotFound('', r.raw), `代碼格式不正確｜${SITE}`); showing = 'nf'; window.scrollTo(0, 0); focusMain(); return; }
+    if (!t) { setView(SR.renderNotFound('', r.raw), `代碼格式不正確｜${SITE}`, 'nf'); showing = 'nf'; window.scrollTo(0, 0); focusMain(); return; }
     if (showing !== t) view.innerHTML = '<p class="loading wrap">載入 ' + SR.esc(t) + ' 的報告…</p>';
     const R = await load(t);
     if (my !== token) return;                                    // 使用者已換去別頁
-    if (!R) { setView(SR.renderNotFound(t, t), `還沒有 ${t} 的報告｜${SITE}`); showing = 'nf'; window.scrollTo(0, 0); focusMain(); return; }
+    if (!R) { setView(SR.renderNotFound(t, t), `還沒有 ${t} 的報告｜${SITE}`, 'nf'); showing = 'nf'; window.scrollTo(0, 0); focusMain(); return; }
     if (showing !== t) {
       const out = SR.renderReport(R);
-      setView(out.html, `${t}｜${R.meta.reportLabel}｜${SITE}`);
+      setView(out.html, `${t}｜${R.meta.reportLabel}｜${SITE}`, 'report');
       SR.mountReport(view, out.ctx);
       showing = t;
       view._fresh = true;
@@ -84,7 +87,7 @@
     }
   }
   function home() {
-    setView(SR.renderHome(), `${SITE}｜輸入代碼，看懂這一季`);
+    setView(SR.renderHome(), `${SITE}｜輸入代碼，看懂這一季`, 'home');
     SR.bindImages(view);
     showing = 'home';
     window.scrollTo(0, 0);
@@ -114,24 +117,24 @@
     }, 120);
   }).observe(view);
 
-  /* ---------- 主題：自動 → 淺色 → 深色 ---------- */
-  const themeBtn = document.getElementById('theme'), root = document.documentElement;
-  const names = { '': '自動（跟隨系統）', light: '淺色', dark: '深色' };
-  function applyTheme(t) {
-    if (t) root.setAttribute('data-theme', t); else root.removeAttribute('data-theme');
-    themeBtn.setAttribute('aria-label', `切換主題，目前：${names[t]}`);
-    themeBtn.title = `主題：${names[t]}`;
-    themeBtn.textContent = t === 'dark' ? '☾' : t === 'light' ? '☀' : '◐';
-  }
-  let theme = '';
-  try { theme = localStorage.getItem('sr-theme') || ''; } catch (e) { /* 無痕模式等情況讀不到，沿用系統 */ }
-  applyTheme(theme);
-  themeBtn.addEventListener('click', () => {
-    theme = theme === '' ? 'light' : theme === 'light' ? 'dark' : '';
-    applyTheme(theme);
-    try { localStorage.setItem('sr-theme', theme); } catch (e) { /* 存不了也沒關係 */ }
-  });
-
   window.addEventListener('hashchange', route);
   route();
+
+  /* ---------- 背景是影片：減少動態偏好要靠暫停影片來遵守（CSS 只管得到動畫與過場）。暫停後停在第一格 ---------- */
+  (function () {
+    const q = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)'), v = document.querySelector('video.art');
+    if (!q || !v) return;
+    function sync() { if (q.matches) { v.pause(); } else { const p = v.play(); if (p) p.catch(function () {}); } }
+    sync();
+    q.addEventListener ? q.addEventListener('change', sync) : q.addListener(sync);
+  })();
+
+  /* ---------- 進場動畫純 CSS；這裡只在最後一個動畫結束時「退役」它，之後換版面（顯示漢堡）也不會重播 ---------- */
+  (function () {
+    const root = document.documentElement, last = document.getElementById('foot2');
+    let timer = 0;
+    function done() { clearTimeout(timer); if (last) last.removeEventListener('animationend', done); root.classList.add('is-entered'); }
+    if (last) last.addEventListener('animationend', done);
+    timer = setTimeout(done, 4000);   // 安全網
+  })();
 })();
