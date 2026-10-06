@@ -381,6 +381,9 @@ td.gcell.me{outline:2px solid var(--blue);outline-offset:-2px;font-weight:700}
 
 /* ===== 架構 A：桌機（>=1200px）— 導覽沿頁首水平排列；hero 單位 = --u ===== */
 @media (min-width:1200px) and (min-height:560px) and (min-aspect-ratio:100/95){
+  /* 報告頁的頁首同時有搜尋框與公司導覽：公司一多就擠，所以桌機的報告頁只顯示代碼（中文名放在 title）；首頁與漢堡選單仍顯示全名 */
+  body:not([data-view="home"]) .bar .menu .nm{display:none}
+  body:not([data-view="home"]) .bar .menu a{padding-inline:10px}
   :root{--s:var(--u)}
   .hero .title{font-size:calc(var(--s)*46.8);line-height:1.18}
   .hero .sub{font-size:calc(var(--s)*19.6);max-width:36em}
@@ -487,6 +490,7 @@ td.gcell.me{outline:2px solid var(--blue);outline-offset:-2px;font-weight:700}
   html:not(.is-entered) .menu a:nth-child(1){animation:en-lift .55s var(--ent-soft) .22s backwards}
   html:not(.is-entered) .menu a:nth-child(2){animation:en-lift .55s var(--ent-soft) .27s backwards}
   html:not(.is-entered) .menu a:nth-child(3){animation:en-lift .55s var(--ent-soft) .32s backwards}
+  html:not(.is-entered) .menu a:nth-child(n+4){animation:en-lift .55s var(--ent-soft) .37s backwards}
   html:not(.is-entered) .pill{animation:en-settle .60s var(--ent-soft) .40s backwards}
   html:not(.is-entered) .burger{animation:en-lift .60s var(--ent-soft) .40s backwards}
   html:not(.is-entered) #h1a{animation:en-wipe .95s var(--ent-line) .34s backwards}

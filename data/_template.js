@@ -23,6 +23,7 @@
      scenarios  { type:'scenarios', title }   由 calc.scenarios 自動產生，保證和試算預設值一致
      grid       { type:'grid' }               由 calc.grid 自動產生（淨利率 × 本益比 方格表）
      calc       { type:'calc' }               互動試算（要有頂層 calc 設定）
+   圖表圖例可覆寫：barline 的 line.legend／line.short、diverge 的 selfLegend／otherLegend／legendNote／aLabel／bLabel、vbar 的 decimals（都可省略）
    顏色語意全站一致：藍＝主結論　綠＝正面／保護　紅＝風險／壓力　金＝媒體補到或需留意　灰＝限制　紫＝思考／反方
    ============================================================================ */
 SR.register({
@@ -76,6 +77,8 @@ SR.register({
     { n: 3, short: '市場反應', question: '市場怎麼反應？媒體說對了嗎？', lead: '先看同業有沒有一起動，不是先看自己漲了多少。', conclusion: 'TODO', evidence: [], howto: [], story: [], terms: [], asks: [], output: 'TODO' },
     { n: 4, short: '盯什麼', question: '最該盯什麼？這個數字能撐多久？', lead: '方向比水準重要。', conclusion: 'TODO', evidence: [], howto: [], story: [], terms: [], asks: [], output: 'TODO' },
     { n: 5, short: '貴不貴', question: '股價算貴嗎？市場在賭什麼？', lead: 'TODO', conclusion: 'TODO',
+      // 第 5 章固定加一組「回購」區塊（放在反推現價之後）：① 每季回購金額／買回股數／均價（table）② 股數實際淨增減：發行 vs 買回（table）
+      //   ③ 剩餘授權、回購殖利率、股利殖利率、占自由現金流（kpis）④ 怎麼用在估值（callout）。沒有回購計畫的公司，改列「發行了多少新股、用什麼價格」。寫法見 CSCO.js／SPCX.js
       evidence: [{ type: 'scenarios', title: '三情境' }, { type: 'grid' }, { type: 'calc' }], howto: [], story: [], terms: [], asks: [], output: 'TODO' }
   ],
 
