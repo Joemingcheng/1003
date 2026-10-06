@@ -7,7 +7,7 @@
   const SITE = '美股財報解讀';
 
   /* ---------- 搜尋 ---------- */
-  document.getElementById('menu').innerHTML = SR.index.map((c) => `<a href="#/${SR.esc(c.ticker)}"><b>${SR.esc(c.ticker)}</b>${SR.esc(c.nameZh || c.name)}</a>`).join('');
+  document.getElementById('menu').innerHTML = SR.index.map((c) => `<a href="#/${SR.esc(c.ticker)}" title="${SR.esc(c.nameZh || c.name)}"><b>${SR.esc(c.ticker)}</b><span class="nm">${SR.esc(c.nameZh || c.name)}</span></a>`).join('');
   document.getElementById('tickers').innerHTML = SR.index.map((c) => `<option value="${SR.esc(c.ticker)}">${SR.esc(c.name)}${c.nameZh ? ' ' + SR.esc(c.nameZh) : ''}</option>`).join('');
 
   function resolve(raw) {

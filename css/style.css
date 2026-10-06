@@ -381,6 +381,9 @@ td.gcell.me{outline:2px solid var(--blue);outline-offset:-2px;font-weight:700}
 
 /* ===== 架構 A：桌機（>=1200px）— 導覽沿頁首水平排列；hero 單位 = --u ===== */
 @media (min-width:1200px) and (min-height:560px) and (min-aspect-ratio:100/95){
+  /* 報告頁的頁首同時有搜尋框與公司導覽：公司一多就擠，所以桌機的報告頁只顯示代碼（中文名放在 title）；首頁與漢堡選單仍顯示全名 */
+  body:not([data-view="home"]) .bar .menu .nm{display:none}
+  body:not([data-view="home"]) .bar .menu a{padding-inline:10px}
   :root{--s:var(--u)}
   .hero .title{font-size:calc(var(--s)*46.8);line-height:1.18}
   .hero .sub{font-size:calc(var(--s)*19.6);max-width:36em}
@@ -487,6 +490,7 @@ td.gcell.me{outline:2px solid var(--blue);outline-offset:-2px;font-weight:700}
   html:not(.is-entered) .menu a:nth-child(1){animation:en-lift .55s var(--ent-soft) .22s backwards}
   html:not(.is-entered) .menu a:nth-child(2){animation:en-lift .55s var(--ent-soft) .27s backwards}
   html:not(.is-entered) .menu a:nth-child(3){animation:en-lift .55s var(--ent-soft) .32s backwards}
+  html:not(.is-entered) .menu a:nth-child(n+4){animation:en-lift .55s var(--ent-soft) .37s backwards}
   html:not(.is-entered) .pill{animation:en-settle .60s var(--ent-soft) .40s backwards}
   html:not(.is-entered) .burger{animation:en-lift .60s var(--ent-soft) .40s backwards}
   html:not(.is-entered) #h1a{animation:en-wipe .95s var(--ent-line) .34s backwards}
@@ -513,3 +517,13 @@ td.gcell.me{outline:2px solid var(--blue);outline-offset:-2px;font-weight:700}
   body:not([data-view="home"]) .brand .t{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   .bar .wrap{gap:8px}
 }
+
+/* 觸控／窄螢幕：報告頁內文裡的小連結（來源註記 [n]、「看…」「去…」連結、麵包屑）點擊範圍放大到約 32–44px。
+   不改字級與行距：用透明的 ::after 向外延伸可點範圍；摺疊的「看數據表」summary 則加高 */
+@media (pointer:coarse),(max-width:760px){
+  sup.ref a,.sum a.go,.asks .hint a,.watch .look a,.crumb a,#view p > a{position:relative}
+  sup.ref a::after,.sum a.go::after,.asks .hint a::after,.watch .look a::after,.crumb a::after,#view p > a::after{content:'';position:absolute;inset:-9px -4px}
+  sup.ref a::after{inset:-10px -6px}
+  details.data summary{padding:9px 0;min-height:40px}
+}
+

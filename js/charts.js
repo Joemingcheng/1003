@@ -173,8 +173,11 @@
       o += `<text class="tm" x="${ml}" y="${yy + 46}" style="font-size:11.5px;${HALO}">${info}</text>`;
     });
     o += `<line class="priceline" x1="${x(s.price)}" x2="${x(s.price)}" y1="${top - 6}" y2="${H - 22}"/>`;
-    const pl = esc(s.priceLabel || '現價'), px = x(s.price), anchor = px > W - 150 ? 'end' : 'start';
-    o += `<text class="tx tb" x="${px + (anchor === 'end' ? -5 : 5)}" y="${top - 12}" text-anchor="${anchor}" style="font-size:12px">${pl}</text>`;
+    const pl = esc(s.priceLabel || '現價'), px = x(s.price), lw = tw(s.priceLabel || '現價', 12);
+    let anchor = px > W - 150 ? 'end' : 'start', tx = px + (anchor === 'end' ? -5 : 5);
+    if (anchor === 'end' && tx - lw < 2) { anchor = 'start'; tx = 2; }                /* 窄螢幕：標籤比左側空間長，改貼齊左緣 */
+    else if (anchor === 'start' && tx + lw > W - 2) tx = Math.max(2, W - 2 - lw);     /* 右側放不下，往左收到剛好放得下 */
+    o += `<text class="tx tb" x="${tx}" y="${top - 12}" text-anchor="${anchor}" style="font-size:12px">${pl}</text>`;
     return o + '</svg>';
   }
 
@@ -184,7 +187,7 @@
     const band = (W - ml - mr) / n, gw = band * 0.72, bw = Math.min(46, gw / k - 4);
     const top = 30, barH = 190, H = top + barH + 54;
     const vmax = Math.max(...s.series.flatMap((se) => se.high || se.values));
-    const T = SR.niceTicks(0, vmax * 1.12, 4), y = (v) => top + barH - ((v - T.min) / (T.max - T.min)) * barH;
+    const T = SR.niceTicks(0, vmax * 1.12, 4), y = (v) => top + barH - ((v - T.min) / (T.max - T.min)) * barH, dp = s.decimals || 0;   /* decimals：數值標籤的小數位（預設 0） */
     let o = svgOpen(W, H, s.title);
     T.ticks.forEach((t) => (o += `<line class="gr" x1="${ml}" x2="${W - mr}" y1="${y(t)}" y2="${y(t)}"/><text class="tm" x="${W - mr}" y="${y(t) - 3}" text-anchor="end">${fmt(t)}${s.suffix || ''}</text>`));
     o += `<line class="ax" x1="${ml}" x2="${W - mr}" y1="${y(0)}" y2="${y(0)}"/>`;
@@ -199,7 +202,7 @@
           o += `<line x1="${cx}" x2="${cx}" y1="${a}" y2="${b}" style="stroke:var(--ink);stroke-width:1.5"/><line x1="${cx - 5}" x2="${cx + 5}" y1="${b}" y2="${b}" style="stroke:var(--ink);stroke-width:1.5"/><line x1="${cx - 5}" x2="${cx + 5}" y1="${a}" y2="${a}" style="stroke:var(--ink);stroke-width:1.5"/>`;
           labTop = b;
         }
-        const t = se.low ? `${fmt(se.low[i])}–${fmt(se.high[i])}${s.suffix || ''}` : `${fmt(v)}${s.suffix || ''}`;
+        const t = se.low ? `${fmt(se.low[i])}–${fmt(se.high[i])}${s.suffix || ''}` : `${fmt(v, dp)}${s.suffix || ''}`;
         o += `<text class="tx tb" x="${cx}" y="${labTop - 6}" text-anchor="middle" style="font-size:${k > 1 && band < 120 ? 10.5 : 12}px">${t}</text>`;
       });
       o += `<text class="tx" x="${c0}" y="${top + barH + 18}" text-anchor="middle" style="font-size:12.5px">${esc(c)}</text>`;
@@ -210,8 +213,9 @@
 
   /* ---------- 圖例與數據表 ---------- */
   function legend(s) {
-    if (s.kind === 'barline') return [['blue', '實際營收'], ['hatch', '下一季指引（鬚線＝上下緣）'], ['gold', '毛利率（GAAP）']];
-    if (s.kind === 'diverge') return [['blue', '本公司'], ['grey', '對照組'], ['', '粗＝兩個交易日累計；淡＝財報後第一個交易日']];
+    /* 圖例文字可由資料覆寫（barLegend／guideLegend／line.legend／selfLegend／otherLegend／legendNote）；沒寫就用預設，沒有折線就不顯示折線那一項 */
+    if (s.kind === 'barline') return [['blue', s.barLegend || '實際營收'], ['hatch', s.guideLegend || '下一季指引（鬚線＝上下緣）']].concat(s.line && s.line.values ? [['gold', s.line.legend || '毛利率（GAAP）']] : []);
+    if (s.kind === 'diverge') return [['blue', s.selfLegend || '本公司'], ['grey', s.otherLegend || '對照組'], ['', s.legendNote || '粗＝兩個交易日累計；淡＝財報後第一個交易日']];
     if (s.kind === 'range') return [['red', '區間中點低於現價'], ['green', '區間中點高於現價'], ['', '虛線＝報告時點的現價']];
     if (s.kind === 'vbar') return s.series.map((se) => [se.color || 'blue', se.name]).concat(s.rangeNote ? [['', s.rangeNote]] : []);
     return [];
@@ -219,20 +223,21 @@
   function dataTable(s) {
     let head = [], rows = [];
     if (s.kind === 'barline') {
-      head = ['期間', s.valueLabel || '營收', '毛利率'];
-      rows = s.bars.map((b, i) => [b.label + (b.note ? `（${b.note}）` : ''), fmt(b.value, 1) + (b.low != null ? `（區間 ${fmt(b.low, 1)}–${fmt(b.high, 1)}）` : ''), s.line ? fmt(s.line.values[i], 1) + '%' : '']);
+      const hasLine = !!(s.line && s.line.values);
+      head = ['期間', s.valueLabel || '營收'].concat(hasLine ? [s.line.short || '毛利率'] : []);
+      rows = s.bars.map((b, i) => [b.label + (b.note ? `（${b.note}）` : ''), fmt(b.value, 1) + (b.low != null ? `（區間 ${fmt(b.low, 1)}–${fmt(b.high, 1)}）` : '')].concat(hasLine ? [fmt(s.line.values[i], 1) + '%'] : []));
     } else if (s.kind === 'hbar') {
       head = ['項目', '數值', '占比'];
       rows = s.items.map((it) => [it.label, num(it.value, s), it.share != null ? fmt(it.share, 1) + '%' : '']);
     } else if (s.kind === 'diverge') {
-      head = ['標的', '財報後第一個交易日', '兩個交易日累計', '備註'];
+      head = ['標的', s.aLabel || '財報後第一個交易日', s.bLabel || '兩個交易日累計', '備註'];
       rows = s.items.map((it) => [it.label, it.a == null ? '—' : signed(it.a, { decimals: 2, suffix: '%' }), it.b == null ? '—' : signed(it.b, { decimals: 2, suffix: '%' }), it.note || '']);
     } else if (s.kind === 'range') {
       head = ['方法', '低', '高', '中點', '較現價'];
       rows = s.items.map((it) => { const m = it.mid != null ? it.mid : (it.low + it.high) / 2; return [it.label, num(it.low, s), num(it.high, s), num(m, s), signed((m / s.price - 1) * 100, { decimals: 0, suffix: '%' })]; });
     } else if (s.kind === 'vbar') {
       head = ['期間'].concat(s.series.map((se) => se.name + (se.low ? '（區間）' : '')));
-      rows = s.cats.map((c, i) => [c].concat(s.series.map((se) => (se.low ? `${fmt(se.low[i])}–${fmt(se.high[i])}${s.suffix || ''}` : fmt(se.values[i]) + (s.suffix || '')))));
+      rows = s.cats.map((c, i) => [c].concat(s.series.map((se) => (se.low ? `${fmt(se.low[i])}–${fmt(se.high[i])}${s.suffix || ''}` : fmt(se.values[i], s.decimals || 0) + (s.suffix || '')))));
     }
     return `<details class="data"><summary>查看數據表</summary><div class="scroll"><table><thead><tr>${head.map((h) => `<th>${esc(h)}</th>`).join('')}</tr></thead><tbody>${rows.map((r) => `<tr>${r.map((c) => `<td>${esc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div></details>`;
   }

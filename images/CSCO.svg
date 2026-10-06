@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-label="思科示意圖：網路交換器與相連的節點">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0A1F3A"/><stop offset="1" stop-color="#155E8A"/>
+    </linearGradient>
+    <linearGradient id="box" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#16324F"/><stop offset="1" stop-color="#0C1D30"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#bg)"/>
+  <!-- 連線：上方三個節點接到交換器 -->
+  <g stroke="#8FD0F5" stroke-opacity=".5" stroke-width="2.5" fill="none" stroke-linecap="round">
+    <path d="M150 70 L250 150M320 52 L320 150M490 70 L390 150"/>
+    <path d="M150 70 L320 52 L490 70" stroke-dasharray="4 7" stroke-opacity=".3"/>
+    <path d="M230 214 L170 286M320 214 L320 292M410 214 L470 286"/>
+  </g>
+  <g fill="#0E2740" stroke="#8FD0F5" stroke-width="2">
+    <circle cx="150" cy="70" r="20"/><circle cx="320" cy="52" r="20"/><circle cx="490" cy="70" r="20"/>
+    <circle cx="170" cy="290" r="14"/><circle cx="320" cy="296" r="14"/><circle cx="470" cy="290" r="14"/>
+  </g>
+  <g fill="#5BC0F2">
+    <circle cx="150" cy="70" r="6"/><circle cx="320" cy="52" r="6"/><circle cx="490" cy="70" r="6"/>
+    <circle cx="170" cy="290" r="4"/><circle cx="320" cy="296" r="4"/><circle cx="470" cy="290" r="4"/>
+  </g>
+  <!-- 交換器：一排網路埠與指示燈 -->
+  <g transform="translate(320 182)">
+    <rect x="-150" y="-36" width="300" height="72" rx="10" fill="url(#box)" stroke="#8FD0F5" stroke-opacity=".7" stroke-width="2"/>
+    <g fill="#081522" stroke="#5BC0F2" stroke-opacity=".7" stroke-width="1.5">
+      <rect x="-132" y="-22" width="22" height="16" rx="2"/><rect x="-104" y="-22" width="22" height="16" rx="2"/><rect x="-76" y="-22" width="22" height="16" rx="2"/><rect x="-48" y="-22" width="22" height="16" rx="2"/>
+      <rect x="-132" y="2" width="22" height="16" rx="2"/><rect x="-104" y="2" width="22" height="16" rx="2"/><rect x="-76" y="2" width="22" height="16" rx="2"/><rect x="-48" y="2" width="22" height="16" rx="2"/>
+    </g>
+    <g fill="#7BE0A8"><circle cx="-121" cy="-27" r="2"/><circle cx="-93" cy="-27" r="2"/><circle cx="-37" cy="-27" r="2"/><circle cx="-121" cy="23" r="2"/><circle cx="-65" cy="23" r="2"/></g>
+    <text x="62" y="11" text-anchor="middle" font-family="'Barlow Condensed','Arial Narrow',Arial,sans-serif" font-size="30" font-weight="700" letter-spacing="5" fill="#FFFFFF">CSCO</text>
+  </g>
+  <text x="24" y="338" font-family="'Noto Sans TC','Microsoft JhengHei',Arial,sans-serif" font-size="16" fill="#DCEFFB" font-weight="700">Cisco Systems</text>
+  <text x="616" y="338" text-anchor="end" font-family="Arial,sans-serif" font-size="12" fill="#8FD0F5">NASDAQ</text>
+</svg>
