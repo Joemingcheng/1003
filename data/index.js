@@ -26,5 +26,25 @@ SR.index = [
     ticker: 'SPCX', name: 'SpaceX', nameZh: '太空探索科技', image: 'images/SPCX.svg',
     period: 'Q2 2026（截至 2026-06-30；上市後第一份財報）', sector: '太空發射、Starlink 與 AI 算力',
     headline: '營收 78 億美元（+92%），但新增營收四成來自 5 月才開始的「出租 AI 算力」，單季資本支出 184 億是營收的 2.4 倍；合約 90 天可終止，公司不回購、反而四個月新發行 10.3 億股'
+  },
+  {
+    ticker: 'MCD', name: 'McDonald\'s', nameZh: '麥當勞', image: 'images/MCD.svg',
+    period: 'Q2 2026（截至 2026-06-30）', sector: '速食連鎖（加盟授權）',
+    headline: 'EPS $3.32（+6%），但多出來的 $0.18 幾乎全來自稅率、賣餐廳的利得、匯率與回購；全球同店只 +1.3%、美國來客數下滑，七週後宣布拿 85 億美元支援加盟主。本季回購 297 萬股、均價 $288.62'
+  },
+  {
+    ticker: 'INTU', name: 'Intuit', nameZh: '財捷', image: 'images/INTU.svg',
+    period: 'Q4 FY26（截至 2026-07-31）', sector: '財務與報稅軟體',
+    headline: '營收 +14%、全年 EPS +20%，但成長靠向老客戶多收錢：付費客戶只 +3%、TurboTax 件數 −2%；公司把明年營收成長下修到 9–10%。全年回購 1,337 萬股、54.6 億美元，是去年的兩倍'
+  },
+  {
+    ticker: 'BTI', name: 'British American Tobacco', nameZh: '英美菸草', image: 'images/BTI.svg',
+    period: 'H1 2026（截至 2026-06-30；半年報）', sector: '菸草與尼古丁產品',
+    headline: '營收固定匯率 +2.9%、調整後 EPS +5.9%，成長全靠美國：香菸漲價（含通路提前進貨）與尼古丁袋 Velo；EPS 靠利息減少與回購。2026 年回購 13 億英鎊，股利殖利率 6.2% 是回購的四倍'
+  },
+  {
+    ticker: 'HD', name: 'The Home Depot', nameZh: '家得寶', image: 'images/HD.svg',
+    period: 'Q2 FY26（截至 2026-08-02）', sector: '居家修繕零售',
+    headline: '營收 479 億美元（+5.7%）、EPS +4.6%，但增量一半以上來自併購，獲利成長來自一筆 6.85 億美元的一次性關稅退費；扣掉後 EPS 年減約 7%。回購自 2024 年 3 月暫停，116.6 億美元額度未動用'
   }
 ];

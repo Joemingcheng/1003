@@ -27,6 +27,29 @@
     if (location.hash === target) route(); else location.hash = target;
   });
 
+  /* 指到（或點進）搜尋框時，往下列出已收錄的公司；打字時只留下符合的。面板在第一次用到時才建立，顯示與隱藏交給 CSS（:hover／:focus-within） */
+  function suggest(f) {
+    if (!f || f.querySelector('.suggest')) return;
+    const input = f.querySelector('input');
+    input.removeAttribute('list');   // 改用自己的清單，避免和瀏覽器內建的建議重疊
+    const box = document.createElement('div');
+    box.className = 'suggest';
+    box.innerHTML = `<p class="sg-h">已有分析的公司（${SR.index.length} 家）</p><div class="sg-list">` +
+      SR.index.map((c) => `<a href="#/${SR.esc(c.ticker)}" data-k="${SR.esc((c.ticker + ' ' + c.name + ' ' + (c.nameZh || '')).toLowerCase())}"><b>${SR.esc(c.ticker)}</b><span>${SR.esc(c.nameZh || c.name)}</span></a>`).join('') +
+      '</div><p class="sg-none" hidden>沒有符合的公司；按「分析」會告訴你怎麼自己拆解。</p>';
+    f.appendChild(box);
+    const filter = () => {
+      const q = input.value.trim().toLowerCase();
+      let n = 0;
+      box.querySelectorAll('a').forEach((a) => { const ok = !q || a.dataset.k.includes(q); a.hidden = !ok; if (ok) n++; });
+      box.querySelector('.sg-none').hidden = n > 0;
+    };
+    input.addEventListener('input', filter);
+    box.addEventListener('click', (e) => { if (e.target.closest('a')) { input.value = ''; filter(); input.blur(); } });
+  }
+  document.addEventListener('mouseover', (e) => suggest(e.target.closest && e.target.closest('form[data-search]')));
+  document.addEventListener('focusin', (e) => suggest(e.target.closest && e.target.closest('form[data-search]')));
+
   /* ---------- 載入資料檔 ---------- */
   function load(t) {
     return new Promise((done) => {

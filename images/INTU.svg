@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-label="Intuit 示意圖：一張報稅表單與計算機">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#071D2B"/><stop offset="1" stop-color="#0F7A6B"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#bg)"/>
+  <!-- 表單 -->
+  <g transform="translate(96 62)">
+    <rect width="210" height="236" rx="10" fill="#F4FBF8" stroke="#9FE3CF" stroke-width="2"/>
+    <rect x="20" y="22" width="96" height="12" rx="4" fill="#0F7A6B"/>
+    <g fill="#C7DAD4">
+      <rect x="20" y="52" width="170" height="8" rx="4"/>
+      <rect x="54" y="84" width="136" height="8" rx="4"/>
+      <rect x="54" y="116" width="110" height="8" rx="4"/>
+      <rect x="54" y="148" width="136" height="8" rx="4"/>
+      <rect x="54" y="180" width="92" height="8" rx="4"/>
+    </g>
+    <!-- 勾選框 -->
+    <g fill="none" stroke="#0F7A6B" stroke-width="2.5">
+      <rect x="20" y="76" width="22" height="22" rx="4"/><rect x="20" y="108" width="22" height="22" rx="4"/><rect x="20" y="140" width="22" height="22" rx="4"/><rect x="20" y="172" width="22" height="22" rx="4"/>
+    </g>
+    <g fill="none" stroke="#17B890" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M25 87 l5 6 l9 -11"/><path d="M25 119 l5 6 l9 -11"/><path d="M25 151 l5 6 l9 -11"/>
+    </g>
+    <rect x="118" y="206" width="72" height="14" rx="7" fill="#17B890"/>
+  </g>
+  <!-- 計算機 -->
+  <g transform="translate(336 118)">
+    <rect width="132" height="180" rx="12" fill="#0B2C3A" stroke="#9FE3CF" stroke-width="2"/>
+    <rect x="14" y="16" width="104" height="34" rx="6" fill="#DFF7EF"/>
+    <text x="110" y="41" text-anchor="end" font-family="'Courier New',monospace" font-size="20" font-weight="700" fill="#0B2C3A">21.4</text>
+    <g fill="#16485A">
+      <rect x="14" y="62" width="28" height="22" rx="5"/><rect x="52" y="62" width="28" height="22" rx="5"/><rect x="90" y="62" width="28" height="22" rx="5"/>
+      <rect x="14" y="92" width="28" height="22" rx="5"/><rect x="52" y="92" width="28" height="22" rx="5"/><rect x="90" y="92" width="28" height="22" rx="5"/>
+      <rect x="14" y="122" width="28" height="22" rx="5"/><rect x="52" y="122" width="28" height="22" rx="5"/>
+      <rect x="14" y="152" width="66" height="16" rx="5"/>
+    </g>
+    <rect x="90" y="122" width="28" height="46" rx="5" fill="#17B890"/>
+  </g>
+  <!-- 代碼 -->
+  <text x="548" y="112" text-anchor="middle" font-family="'Barlow Condensed','Arial Narrow',Arial,sans-serif" font-size="62" font-weight="700" letter-spacing="4" fill="#FFFFFF">INTU</text>
+  <text x="24" y="338" font-family="'Noto Sans TC','Microsoft JhengHei',Arial,sans-serif" font-size="16" fill="#DDF6EE" font-weight="700">Intuit</text>
+  <text x="616" y="338" text-anchor="end" font-family="Arial,sans-serif" font-size="12" fill="#9FE3CF">NASDAQ</text>
+</svg>

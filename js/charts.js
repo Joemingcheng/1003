@@ -213,8 +213,8 @@
 
   /* ---------- 圖例與數據表 ---------- */
   function legend(s) {
-    /* 圖例文字可由資料覆寫（barLegend／guideLegend／line.legend／selfLegend／otherLegend／legendNote）；沒寫就用預設，沒有折線就不顯示折線那一項 */
-    if (s.kind === 'barline') return [['blue', s.barLegend || '實際營收'], ['hatch', s.guideLegend || '下一季指引（鬚線＝上下緣）']].concat(s.line && s.line.values ? [['gold', s.line.legend || '毛利率（GAAP）']] : []);
+    /* 圖例文字可由資料覆寫（barLegend／guideLegend／line.legend／selfLegend／otherLegend／legendNote）；沒寫就用預設；沒有指引長條或沒有折線時，就不顯示那一項 */
+    if (s.kind === 'barline') return [['blue', s.barLegend || '實際營收']].concat(s.bars.some((x) => x.kind === 'guide') ? [['hatch', s.guideLegend || '下一季指引（鬚線＝上下緣）']] : [], s.line && s.line.values ? [['gold', s.line.legend || '毛利率（GAAP）']] : []);
     if (s.kind === 'diverge') return [['blue', s.selfLegend || '本公司'], ['grey', s.otherLegend || '對照組'], ['', s.legendNote || '粗＝兩個交易日累計；淡＝財報後第一個交易日']];
     if (s.kind === 'range') return [['red', '區間中點低於現價'], ['green', '區間中點高於現價'], ['', '虛線＝報告時點的現價']];
     if (s.kind === 'vbar') return s.series.map((se) => [se.color || 'blue', se.name]).concat(s.rangeNote ? [['', s.rangeNote]] : []);

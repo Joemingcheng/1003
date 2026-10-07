@@ -6,6 +6,7 @@
   'use strict';
   const SR = window.SR, esc = SR.esc;
   let calcUid = 0;
+  let featStart = null;   // 首頁「已收錄」從第幾家開始列；每次載入網站決定一次
   const KIND = { doc: '正式文件', tr: '講稿／逐字稿', media: '媒體', data: '市場資料', calc: '自算' };
   const TONE_LABEL = { blue: '重點', green: '保護因素', red: '風險與壓力', gold: '留意', grey: '限制', purple: '思考' };
 
@@ -183,7 +184,15 @@
   SR.renderHome = function () {
     const idx = SR.index;
     const chev = '<svg class="chev" viewBox="0 0 11 20" aria-hidden="true"><path d="M1.15 1.15 L9.6 10 L1.15 18.85"/></svg>';
-    const feats = idx.map((c) => `<li>${chev}<a href="#/${esc(c.ticker)}"><b>${esc(c.ticker)}</b>${esc(c.nameZh || c.name)}</a></li>`).join('');
+    /* 公司一多，全部列出來太佔版面：每次開啟網站只列 3 家，下次開啟換下 3 家（輪流）；完整清單在下方卡片與選單 */
+    if (featStart == null) {
+      let n = 0;
+      try { n = parseInt(localStorage.getItem('sr-feat') || '0', 10) || 0; localStorage.setItem('sr-feat', String((n + 3) % Math.max(idx.length, 1))); }
+      catch (e) { n = Math.floor(Math.random() * Math.max(idx.length, 1)); }
+      featStart = n % Math.max(idx.length, 1);
+    }
+    const shown = idx.length <= 3 ? idx : [0, 1, 2].map((k) => idx[(featStart + k) % idx.length]);
+    const feats = shown.map((c) => `<li>${chev}<a href="#/${esc(c.ticker)}"><b>${esc(c.ticker)}</b>${esc(c.nameZh || c.name)}</a></li>`).join('');
     const cards = idx.map((c) => `<a class="co-card" href="#/${esc(c.ticker)}"><div class="img"><img src="${esc(c.image)}" alt="${esc(c.name)} 示意圖" width="640" height="360" loading="lazy" data-fallback="${esc(c.ticker)}"></div><div class="body"><span class="tk">${esc(c.ticker)}</span><span class="nm">${esc(c.name)}${c.nameZh ? `（${esc(c.nameZh)}）` : ''}</span><span class="hd">${esc(c.headline)}</span><span class="meta">${esc(c.period)}｜${esc(c.sector)}</span></div></a>`).join('');
     const steps = [
       ['賺多少、錢從哪裡來', '拆營收、拆利潤，找出錢真正的來源，寫下這一季的「主線句」。'],
@@ -203,7 +212,7 @@
           <button class="btn primary" type="submit"><span id="cta">分析</span><svg class="arrow" viewBox="0 0 16 11" aria-hidden="true"><path d="M0 5.5 H14.6 M10.3 1.2 L14.9 5.5 L10.3 9.8"/></svg></button>
         </form>
         <div class="hero-bottom">
-        <ul class="feats" aria-label="已收錄的公司"><li class="lab">已收錄：</li>${feats}</ul>
+        <ul class="feats" aria-label="已收錄的公司"><li class="lab">已收錄 ${idx.length} 家，例如：</li>${feats}</ul>
         <p class="help">只能分析已收錄的公司；輸入其他代碼時，會告訴你怎麼自己拆解，以及如何把它加進本站。</p>
         <span class="rule" aria-hidden="true"></span>
         </div>

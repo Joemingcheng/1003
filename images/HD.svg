@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-label="家得寶示意圖：一棟房子的屋架與堆疊的木料">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2A1608"/><stop offset="1" stop-color="#B4541A"/>
+    </linearGradient>
+    <linearGradient id="wood" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#E9B981"/><stop offset="1" stop-color="#C98B4B"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#bg)"/>
+  <!-- 地面 -->
+  <path d="M0 286 H640" stroke="#F6C99A" stroke-opacity=".35" stroke-width="2"/>
+  <!-- 房子的屋架：還在施工中的樣子 -->
+  <g fill="none" stroke="#FFE2C2" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M120 170 L250 78 L380 170"/>
+    <path d="M150 170 V286M350 170 V286M150 170 H350"/>
+    <path d="M200 170 V286M250 170 V286M300 170 V286" stroke-opacity=".55" stroke-width="3.5"/>
+    <path d="M185 124 H315M218 100 H282" stroke-opacity=".55" stroke-width="3.5"/>
+    <path d="M250 78 V170" stroke-opacity=".55" stroke-width="3.5"/>
+  </g>
+  <!-- 門框 -->
+  <rect x="226" y="214" width="48" height="72" rx="3" fill="#2A1608" fill-opacity=".55" stroke="#FFE2C2" stroke-width="3"/>
+  <!-- 堆疊的木料 -->
+  <g stroke="#7A4A1E" stroke-width="1.5">
+    <rect x="420" y="254" width="170" height="14" rx="2" fill="url(#wood)"/>
+    <rect x="432" y="238" width="150" height="14" rx="2" fill="url(#wood)"/>
+    <rect x="426" y="222" width="160" height="14" rx="2" fill="url(#wood)"/>
+    <rect x="444" y="206" width="126" height="14" rx="2" fill="url(#wood)"/>
+    <rect x="414" y="270" width="182" height="14" rx="2" fill="url(#wood)"/>
+  </g>
+  <!-- 代碼 -->
+  <text x="505" y="150" text-anchor="middle" font-family="'Barlow Condensed','Arial Narrow',Arial,sans-serif" font-size="78" font-weight="700" letter-spacing="6" fill="#FFFFFF">HD</text>
+  <text x="24" y="338" font-family="'Noto Sans TC','Microsoft JhengHei',Arial,sans-serif" font-size="16" fill="#FFEAD3" font-weight="700">The Home Depot</text>
+  <text x="616" y="338" text-anchor="end" font-family="Arial,sans-serif" font-size="12" fill="#F6C99A">NYSE</text>
+</svg>

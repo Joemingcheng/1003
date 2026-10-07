@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-label="麥當勞示意圖：一份漢堡、薯條與飲料">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#3A0B0B"/><stop offset="1" stop-color="#B23A1E"/>
+    </linearGradient>
+    <linearGradient id="bun" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F3C26B"/><stop offset="1" stop-color="#D9953A"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#bg)"/>
+  <!-- 托盤 -->
+  <rect x="70" y="268" width="390" height="16" rx="8" fill="#5A1A12" stroke="#FFD9A8" stroke-opacity=".5" stroke-width="2"/>
+  <!-- 漢堡 -->
+  <g transform="translate(180 0)">
+    <path d="M-78 190 Q-78 128 0 128 Q78 128 78 190 Z" fill="url(#bun)" stroke="#8A5516" stroke-width="2"/>
+    <g fill="#FFF2D6"><ellipse cx="-30" cy="150" rx="5" ry="2.5"/><ellipse cx="6" cy="143" rx="5" ry="2.5"/><ellipse cx="38" cy="156" rx="5" ry="2.5"/><ellipse cx="-4" cy="166" rx="5" ry="2.5"/></g>
+    <path d="M-84 198 Q-63 210 -42 198 Q-21 186 0 198 Q21 210 42 198 Q63 186 84 198 V206 H-84 Z" fill="#8FCB6B"/>
+    <rect x="-80" y="206" width="160" height="14" rx="5" fill="#F7D34B"/>
+    <rect x="-78" y="220" width="156" height="22" rx="9" fill="#5B2C14"/>
+    <path d="M-78 244 H78 Q78 268 60 268 H-60 Q-78 268 -78 244 Z" fill="url(#bun)" stroke="#8A5516" stroke-width="2"/>
+  </g>
+  <!-- 薯條 -->
+  <g transform="translate(330 0)">
+    <g fill="#F7D34B" stroke="#C99A1E" stroke-width="1.5">
+      <rect x="-30" y="150" width="12" height="80" rx="3" transform="rotate(-10 -24 190)"/>
+      <rect x="-12" y="140" width="12" height="90" rx="3" transform="rotate(-3 -6 185)"/>
+      <rect x="6" y="146" width="12" height="84" rx="3" transform="rotate(5 12 188)"/>
+      <rect x="22" y="156" width="12" height="74" rx="3" transform="rotate(12 28 193)"/>
+    </g>
+    <path d="M-40 204 H44 L34 268 H-30 Z" fill="#E9E2D6" stroke="#8A5516" stroke-width="2"/>
+    <path d="M-36 222 H40" stroke="#B23A1E" stroke-width="6"/>
+  </g>
+  <!-- 飲料 -->
+  <g transform="translate(418 0)">
+    <path d="M-26 176 H26 L18 268 H-18 Z" fill="#E9E2D6" stroke="#8A5516" stroke-width="2"/>
+    <rect x="-30" y="166" width="60" height="12" rx="4" fill="#FFFFFF" stroke="#8A5516" stroke-width="2"/>
+    <path d="M6 166 L18 118" stroke="#FFD9A8" stroke-width="5" stroke-linecap="round"/>
+    <path d="M-21 214 H21" stroke="#B23A1E" stroke-width="6"/>
+  </g>
+  <!-- 代碼 -->
+  <text x="540" y="150" text-anchor="middle" font-family="'Barlow Condensed','Arial Narrow',Arial,sans-serif" font-size="70" font-weight="700" letter-spacing="5" fill="#FFFFFF">MCD</text>
+  <text x="24" y="338" font-family="'Noto Sans TC','Microsoft JhengHei',Arial,sans-serif" font-size="16" fill="#FFE9CF" font-weight="700">McDonald's</text>
+  <text x="616" y="338" text-anchor="end" font-family="Arial,sans-serif" font-size="12" fill="#FFD9A8">NYSE</text>
+</svg>
