@@ -4,7 +4,23 @@
 
 純 HTML／CSS／JS，沒有後端、沒有建置步驟，可以直接放上 GitHub Pages。
 
-目前收錄：**MU（美光）**、**NVDA（輝達）**、**AAPL（蘋果）**。報告時點：2026-10-03，股價資料到 2026-10-02 收盤。
+目前收錄 9 家（更新日：2026-10-07）：
+
+| 代碼 | 公司 | 報告期間 | 報告時點 |
+|---|---|---|---|
+| MU | 美光科技 | FQ4-26 | 2026-10-03 |
+| NVDA | 輝達 | Q2 FY27 | 2026-10-03 |
+| AAPL | 蘋果 | FQ3-26 | 2026-10-03 |
+| CSCO | 思科 | Q4 FY26 | 2026-10-06 |
+| SPCX | SpaceX | Q2 2026 | 2026-10-06 |
+| MCD | 麥當勞 | Q2 2026 | 2026-10-07 |
+| INTU | Intuit（財捷） | Q4 FY26 | 2026-10-07 |
+| BTI | 英美菸草（ADR，半年報） | H1 2026 | 2026-10-07 |
+| HD | 家得寶 | Q2 FY26 | 2026-10-07 |
+
+股價資料到各報告時點的前一個交易日收盤。CSCO 之後的六份報告，第 5 章另有「回購」區塊（買回金額、股數、均價、剩餘授權、殖利率）；沒有回購或已暫停的公司（SPCX、HD）改列發行新股或暫停前的紀錄。
+
+線上版：<https://joemingcheng.github.io/1003/>
 
 ---
 
@@ -13,17 +29,18 @@
 ```
 index.html          首頁（唯一的 HTML；報告由 JS 依網址產生）
 css/style.css       樣式（顏色語意：藍＝主結論 綠＝保護 紅＝壓力 金＝媒體補到 灰＝限制 紫＝思考）
+                    整體風格：晨間湖景影片背景、Inter 字型、深灰玻璃卡片、橘色主要按鈕（寫在檔案最後的 FASTSHOT 區塊）
 js/
   util.js           跳脫、行內標記、數字格式
   charts.js         純 SVG 圖表（營收＋毛利率、橫條、股價反應、估值區間、直條）
   calc.js           互動試算與情境表
   render.js         版型：把一份報告資料渲染成頁面
-  app.js            路由、搜尋、主題切換
+  app.js            路由、搜尋、搜尋框的下拉公司清單
 data/
   index.js          首頁卡片與搜尋建議清單
-  MU.js  NVDA.js  AAPL.js   各公司的報告資料（只有數字與文字）
+  MU.js NVDA.js AAPL.js CSCO.js SPCX.js MCD.js INTU.js BTI.js HD.js   各公司的報告資料（只有數字與文字）
   _template.js      新增公司用的範本（含欄位說明）
-images/             各公司的圖片（相對路徑；MU.svg、NVDA.svg、AAPL.svg 是示意圖）
+images/             各公司的圖片（相對路徑；<代碼>.svg 都是本站自繪的示意圖）
 tools/
   sec_quarters.py   從 SEC EDGAR（XBRL）抓某檔股票的單季與年度財務序列，替新報告備料
   check_reports.js  報告資料自動檢查（出處引用、情境與試算一致、原話長度…）；需要 Node.js
@@ -40,11 +57,13 @@ tools/
 
 網址格式：`#/MU` 是美光的報告，`#/MU/ch3` 會直接捲到第 3 章。
 
+首頁的使用方式：把滑鼠移到（或點進）搜尋框，下方會列出目前有分析的公司，可以直接點選或打字篩選；搜尋框下方的「已收錄」每次開啟網站會輪流列出 3 家；完整清單在下方的卡片區與右上角選單。
+
 ## 部署到 GitHub Pages（手動上傳）
 
 1. 在 GitHub 建立一個新的 repository（例如 `us-stock-report`），設為 Public。
 2. 進入 repository → **Add file → Upload files**，把下列內容**連同資料夾結構**拖進去：
-   `index.html`、`css/`、`js/`、`data/`、`images/`、`README.md`（`tools/` 想放就放，網站不需要它）。
+   `index.html`、`css/`、`js/`、`data/`、`images/`、這份說明檔（`tools/` 想放就放，網站不需要它）。
    - **`index.html` 必須在 repository 的最上層**。
    - 不需要上傳：`.claude/`（本機預覽設定）、`vibe-site/` 與 `tsmc-2330-quote-20261002.html`（這個資料夾裡其他專案的檔案）。
 3. 進入 **Settings → Pages**，Source 選 *Deploy from a branch*，Branch 選 `main`、資料夾選 `/ (root)`，按 Save。
@@ -89,7 +108,7 @@ node tools/check_reports.js TSLA     # 只檢查 TSLA
 
 ## 關於圖片
 
-`images/` 裡的 `MU.svg`、`NVDA.svg` 是本站自繪的示意圖（晶片造型加代碼），**不是公司的官方標誌**。若要換成官方 Logo 或照片，請把檔案放進 `images/` 並在 `data/index.js` 與該公司資料檔的 `image` 欄位改檔名；使用前請自行確認授權。
+`images/` 裡的 `<代碼>.svg` 都是本站自繪的示意圖（加上代碼字樣），**不是公司的官方標誌**。若要換成官方 Logo 或照片，請把檔案放進 `images/` 並在 `data/index.js` 與該公司資料檔的 `image` 欄位改檔名；使用前請自行確認授權。
 
 ## 授權與免責
 
