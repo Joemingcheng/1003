@@ -46,5 +46,15 @@ SR.index = [
     ticker: 'HD', name: 'The Home Depot', nameZh: '家得寶', image: 'images/HD.svg',
     period: 'Q2 FY26（截至 2026-08-02）', sector: '居家修繕零售',
     headline: '營收 479 億美元（+5.7%）、EPS +4.6%，但增量一半以上來自併購，獲利成長來自一筆 6.85 億美元的一次性關稅退費；扣掉後 EPS 年減約 7%。回購自 2024 年 3 月暫停，116.6 億美元額度未動用'
+  },
+  {
+    ticker: 'KRMN', name: 'Karman Space & Defense', nameZh: '卡門太空與國防', image: 'images/KRMN.svg',
+    period: 'Q2 2026（截至 2026-06-30）', sector: '飛彈、太空發射與潛艦零組件',
+    headline: '營收 1.82 億美元（+58%），但增量 58% 是收購來的，上半年營業現金流是負的、收購靠加借貸款；有機成長改為至少每年公布一次。沒有回購，大股東上市以來在 $22、$49、$61 賣出約 5,600 萬股'
+  },
+  {
+    ticker: 'IREN', name: 'IREN Limited', nameZh: 'IREN（AI 雲端）', image: 'images/IREN.svg',
+    period: 'FY26 Q4（截至 2026-06-30）', sector: 'AI 雲端算力與資料中心（前比特幣礦商）',
+    headline: '已簽約年化營收 40 億、2026 年產能幾乎賣光，但季營收只有 1.37 億、連續 3 季下滑，EBITDA 剩 1,920 萬；擴張靠一年約 120 億的新股與可轉債，明年資本支出 250–300 億。沒有回購，股數 15 個月多 55%'
   }
 ];

@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-label="卡門太空與國防示意圖：火箭整流罩與級間段的剖面線稿">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0B1426"/><stop offset="1" stop-color="#2E4A73"/>
+    </linearGradient>
+    <linearGradient id="shell" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#C9D6E8"/><stop offset="1" stop-color="#8FA6C4"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#bg)"/>
+  <!-- 星點 -->
+  <g fill="#DCE6F5">
+    <circle cx="60" cy="48" r="1.6"/><circle cx="148" cy="96" r="1.2"/><circle cx="330" cy="40" r="1.4"/>
+    <circle cx="580" cy="60" r="1.2"/><circle cx="470" cy="214" r="1.3"/><circle cx="96" cy="230" r="1.1"/>
+  </g>
+  <!-- 整流罩（鼻錐）與級間段，橫躺在組裝架上 -->
+  <g stroke="#0B1426" stroke-width="2" stroke-linejoin="round">
+    <path d="M70 196 C110 150 170 138 230 138 H330 V254 H230 C170 254 110 242 70 196 Z" fill="url(#shell)"/>
+    <rect x="330" y="138" width="74" height="116" fill="#7F96B6"/>
+    <rect x="404" y="146" width="96" height="100" fill="#A9BCD6"/>
+  </g>
+  <!-- 分離線與加強環 -->
+  <g stroke="#F2C35B" stroke-width="2.5" fill="none" stroke-dasharray="7 6">
+    <path d="M90 196 H500"/>
+  </g>
+  <g stroke="#0B1426" stroke-opacity=".45" stroke-width="2">
+    <path d="M352 138 V254M380 138 V254M430 146 V246M460 146 V246"/>
+  </g>
+  <!-- 組裝架 -->
+  <g stroke="#6F87A8" stroke-width="4" stroke-linecap="round">
+    <path d="M150 254 L132 292M250 254 L268 292M420 246 L402 292M480 246 L498 292M110 292 H530"/>
+  </g>
+  <!-- 代碼 -->
+  <text x="610" y="92" text-anchor="end" font-family="'Barlow Condensed','Arial Narrow',Arial,sans-serif" font-size="72" font-weight="700" letter-spacing="6" fill="#FFFFFF">KRMN</text>
+  <text x="24" y="338" font-family="'Noto Sans TC','Microsoft JhengHei',Arial,sans-serif" font-size="16" fill="#E3ECF8" font-weight="700">Karman Space &amp; Defense</text>
+  <text x="616" y="338" text-anchor="end" font-family="Arial,sans-serif" font-size="12" fill="#9FB4D2">NYSE</text>
+</svg>

@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" width="640" height="360" role="img" aria-label="IREN 示意圖：輸電塔把電送進一排 GPU 機櫃">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#06201C"/><stop offset="1" stop-color="#0F6B5C"/>
+    </linearGradient>
+    <linearGradient id="rack" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1B3A35"/><stop offset="1" stop-color="#0C2622"/>
+    </linearGradient>
+  </defs>
+  <rect width="640" height="360" fill="url(#bg)"/>
+  <!-- 地面 -->
+  <path d="M0 290 H640" stroke="#7FE3CC" stroke-opacity=".3" stroke-width="2"/>
+  <!-- 輸電塔 -->
+  <g fill="none" stroke="#BFF3E6" stroke-width="3" stroke-linejoin="round" stroke-linecap="round">
+    <path d="M70 290 L100 120 L130 290"/>
+    <path d="M80 236 H120M86 196 H114M92 156 H108"/>
+    <path d="M80 236 L114 196M120 236 L86 196M86 196 L108 156M114 196 L92 156" stroke-opacity=".6" stroke-width="2"/>
+    <path d="M62 140 H138M70 120 H130"/>
+  </g>
+  <!-- 電線：從塔延伸到機房 -->
+  <g fill="none" stroke="#7FE3CC" stroke-width="2" stroke-opacity=".8">
+    <path d="M138 140 C200 160 240 168 300 150"/>
+    <path d="M130 120 C200 138 250 146 300 132"/>
+  </g>
+  <!-- GPU 機櫃 -->
+  <g stroke="#7FE3CC" stroke-width="2">
+    <rect x="300" y="128" width="62" height="162" rx="4" fill="url(#rack)"/>
+    <rect x="372" y="128" width="62" height="162" rx="4" fill="url(#rack)"/>
+    <rect x="444" y="128" width="62" height="162" rx="4" fill="url(#rack)"/>
+  </g>
+  <g fill="#7FE3CC">
+    <rect x="310" y="142" width="42" height="8" rx="2"/><rect x="310" y="160" width="42" height="8" rx="2"/><rect x="310" y="178" width="42" height="8" rx="2" fill-opacity=".45"/><rect x="310" y="196" width="42" height="8" rx="2"/><rect x="310" y="214" width="42" height="8" rx="2" fill-opacity=".45"/>
+    <rect x="382" y="142" width="42" height="8" rx="2" fill-opacity=".45"/><rect x="382" y="160" width="42" height="8" rx="2"/><rect x="382" y="178" width="42" height="8" rx="2"/><rect x="382" y="196" width="42" height="8" rx="2" fill-opacity=".45"/><rect x="382" y="214" width="42" height="8" rx="2"/>
+    <rect x="454" y="142" width="42" height="8" rx="2"/><rect x="454" y="160" width="42" height="8" rx="2" fill-opacity=".45"/><rect x="454" y="178" width="42" height="8" rx="2"/><rect x="454" y="196" width="42" height="8" rx="2"/><rect x="454" y="214" width="42" height="8" rx="2" fill-opacity=".45"/>
+  </g>
+  <!-- 液冷管線 -->
+  <path d="M296 270 H512" stroke="#5AB8F0" stroke-width="4" stroke-linecap="round"/>
+  <!-- 代碼 -->
+  <text x="610" y="92" text-anchor="end" font-family="'Barlow Condensed','Arial Narrow',Arial,sans-serif" font-size="78" font-weight="700" letter-spacing="6" fill="#FFFFFF">IREN</text>
+  <text x="24" y="338" font-family="'Noto Sans TC','Microsoft JhengHei',Arial,sans-serif" font-size="16" fill="#D7F7EE" font-weight="700">IREN Limited</text>
+  <text x="616" y="338" text-anchor="end" font-family="Arial,sans-serif" font-size="12" fill="#8FDCC9">NASDAQ</text>
+</svg>
